@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.example.Vehiculo.service.VehiculoService;
 
 @RestController
 @RequestMapping("vehiculo")
+@CrossOrigin
 public class VehiculoController {
 	
 	@Autowired
@@ -53,7 +55,7 @@ public class VehiculoController {
 	}
 	
 	@GetMapping("buscar/{placa}")
-	public ResponseEntity buscar(@PathVariable int placa) {
+	public ResponseEntity <Vehiculo>buscar(@PathVariable int placa) {
 		
 		Vehiculo aux = service.buscar(placa);
 		
@@ -89,9 +91,10 @@ public class VehiculoController {
 	
 	}
 	
-	@GetMapping("buscar_a")
-	public ResponseEntity<List<Vehiculo>> buscarPorAño(@RequestParam int a){
-		List<Vehiculo> lista = (List<Vehiculo>) service.buscarPorAño(a);
+	@GetMapping("buscar_a/{año}")
+	public ResponseEntity<List<Vehiculo>> buscarPorAño(@PathVariable("año") int año){
+{
+		List<Vehiculo> lista = (List<Vehiculo>) service.buscarPorAño(año);
 		
 		if(lista.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();	
@@ -103,4 +106,4 @@ public class VehiculoController {
 	}
 	
 
-}
+	}}

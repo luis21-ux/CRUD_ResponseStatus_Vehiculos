@@ -3,11 +3,15 @@ package com.example.Vehiculo.Dominio;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "VEHICULOSs_BD")
 @Data
+@NoArgsConstructor   
+@AllArgsConstructor 
 public class Vehiculo {
 	
 	@Id
